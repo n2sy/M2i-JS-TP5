@@ -14,13 +14,13 @@
   <body>
     <div class="container">
       <h2>Nouveau livre</h2>
-      <form>
+      <form id="formData">
         <label> Titre du livre</label>
-        <input type="text" class="form-control" />
+        <input id="titre" type="text" class="form-control" />
         <label> Auteur du livre</label>
-        <input type="text" class="form-control" />
+        <input id="auteur" type="text" class="form-control" />
         <label> ISBN du livre</label>
-        <input type="text" class="form-control" />
+        <input id="isbn" type="text" class="form-control" />
         <br />
         <input type="submit" value="Ajouter" class="form-control" />
         <!-- <button class="btn btn-primary">Ajouter</button> -->
@@ -35,7 +35,14 @@
             <th></th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="book-list">
+          <!-- <tr>
+            <td>aaaa</td>
+            <td>aaaaaa</td>
+            <td>1111</td>
+            <td></td>
+          </tr> -->
+        </tbody>
       </table>
     </div>
     <script src="script.js"></script>

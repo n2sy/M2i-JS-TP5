@@ -24,7 +24,7 @@ class UI {
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
-    <td><a href="#">X</a></td>
+    <td><a href="#" class="delete">X</a></td>
     `;
     liste.appendChild(ligne);
   }
@@ -45,6 +45,9 @@ class UI {
       document.querySelector(".alert").remove();
     }, 2500);
   }
+  deleteBook(cible) {
+    cible.parentElement.parentElement.remove();
+  }
 }
 
 document.getElementById("formData").addEventListener("submit", (e) => {
@@ -53,8 +56,24 @@ document.getElementById("formData").addEventListener("submit", (e) => {
   const auteur = document.getElementById("auteur").value;
   const isbn = document.getElementById("isbn").value;
   let ui = new UI();
-  let b = new Book(title, auteur, isbn);
-  ui.addBookToList(b);
-  ui.showAlert("Livre ajouté !", "alert-success");
-  ui.eraseInputs();
+
+  if (title == "" || auteur == "" || isbn == "" || title.length < 3) {
+    ui.showAlert("Veuillez vérifier vos données", "alert-warning");
+  } else {
+    let b = new Book(title, auteur, isbn);
+    ui.addBookToList(b);
+    ui.showAlert("Livre ajouté !", "alert-success");
+    ui.eraseInputs();
+  }
+});
+
+document.getElementById("book-list").addEventListener("click", (e) => {
+  console.log(e);
+  let ui = new UI();
+  if (e.target.className == "delete") {
+    ui.deleteBook(e.target);
+    ui.showAlert("Livre supprimé !", "alert-danger");
+  } else {
+    ui.showAlert("Veuillez cliquer sur le X pour supprimer !", "alert-info");
+  }
 });
